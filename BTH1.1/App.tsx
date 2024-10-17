@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.tsx
+import React from "react";
+import { ScrollView, StyleSheet, SafeAreaView } from "react-native";
+import PostComponent from "./src/components/PostComponent";
+import { posts, Post } from "./src/assets/postData"; // Import dữ liệu và kiểu Post từ postsData.ts
 
-export default function App() {
+const App: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      <ScrollView style={styles.container}>
+        {posts.map((post: Post) => (
+          <PostComponent key={post.id} post={post} />
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  container: { padding: 10, backgroundColor: "#f0f0f0" },
 });
+
+export default App;
